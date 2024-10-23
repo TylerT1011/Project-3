@@ -2,6 +2,9 @@ package melody.apps;
 
 import itsc2214.QueueADT;
 import itsc2214.StackADT;
+
+import java.util.Stack;
+
 import datastructures.*;
 import melody.audio.Note;
 
@@ -30,7 +33,6 @@ public class Melody {
      */
     public Melody(QueueADT<Note> song, 
             String title, String artists, int lineNum) {
-        // TODO: write this constructor
         this.song = song;
         this.totalDuration = 0;
         this.songTitle = title;
@@ -123,11 +125,20 @@ public class Melody {
      * @return boolean Is it successful reversing the melody
      */
     public boolean reverse() {
-        // TODO: write this method
+        
+        StackADT<Note> songStack = new LinkedStack<>();
 
+        while(! song.isEmpty())
+        {
+            songStack.push(song.dequeue());
+        }
 
+        while(! songStack.isEmpty())
+        {
+            song.enqueue(songStack.pop());
+        }
 
-
+        return true;
     }
     
     /**

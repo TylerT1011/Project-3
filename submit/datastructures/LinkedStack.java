@@ -20,10 +20,8 @@ public class LinkedStack<T> implements StackADT<T> {
      * Constructor.
      */
     public LinkedStack() {
-        //TODO Instantiate the linked list-based data 
-        //collection
-
-        
+        top = null;
+        size = 0;
     }
 
     /**
@@ -31,11 +29,11 @@ public class LinkedStack<T> implements StackADT<T> {
      * @param target input element
      */
     @Override
-    public boolean push(T target) {
-        //TODO Add targer to the top of the stack 
-        //(represented by the top reference node)
-
-        
+    public boolean push(T target) {        
+        Node<T> newTop = new Node<T>(target, top);
+        top = newTop;
+        size++;
+        return true;
 
     }
 
@@ -45,12 +43,15 @@ public class LinkedStack<T> implements StackADT<T> {
      */
     @Override
     public T pop() {
-        //TODO Remove and return the top item on the stack
-        //Corresponding to retrieve the top node and reset 
-        //the top reference to the reference of its next node
+        if(! isEmpty())
+        {
+            T pop = top.getData();
+            top = top.getNext();
+            size--;
+            return pop;
+        }
+        return null;   
 
-
-        
     }
 
     /**
@@ -59,11 +60,11 @@ public class LinkedStack<T> implements StackADT<T> {
      */
     @Override
     public T topValue() {
-        //TODO Return the top item on this stack, but do 
-        //not modify the stack.
-        //Corresponding to return the element in the node 
-        //referred by the reference top
-
+        if (top != null)
+        {
+            return top.getData();
+        }
+        return null;
         
     }
 
@@ -99,32 +100,4 @@ public class LinkedStack<T> implements StackADT<T> {
     }
 }
 
-/*
- *     //**
-     * main() function.
-     * @param argv no arguments
-     //
-    public static void main(String argv[]){
-        final  int iSIZE = 10;
-        LinkedStack<String> stringStack = new LinkedStack<String>();
-        
-        String line;
-        for (int i = 0; i < iSIZE; i++) {
-            //push the new element
-            stringStack.push(Integer.valueOf(i).toString());
-        }
-        try{            
-            System.out.println("\nOpposite order is: ");
-            for (int i = 0; i < iSIZE; i++){
-                // TODO Remove an element in the order opposite to they were entered
-                //      Save it to the String variable, named line
-                line = stringStack.pop();
-                
-                System.out.println(line);
-            }
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
- */
 

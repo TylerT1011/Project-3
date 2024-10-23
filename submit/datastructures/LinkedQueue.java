@@ -24,11 +24,9 @@ public class LinkedQueue<T> implements QueueADT<T> {
      * Constructor.
      */
     public LinkedQueue() {
-        //TODO Instantiate the linked list-based data 
-        //collection
-
-        
-
+        front = null;
+        rear = null;
+        size = 0;
     }
     
     /**
@@ -37,15 +35,19 @@ public class LinkedQueue<T> implements QueueADT<T> {
      */
     @Override
     public boolean enqueue(T target) {
-        /** TODO if queue is empty, insert new node
-         * and change the rear and front references
-         * 
-         * if queue is not empty, insert new node in 
-         * the rear of the queue
-        **/
-        
-
-
+        Node<T> node = new Node<T>(target, null);
+        if (isEmpty())
+        {
+            front = node;
+            rear = node;
+        }
+        else
+        {
+            rear.setNext(node);
+            rear = node;
+        }
+        size++;
+    
         return true;
     }
     
@@ -55,13 +57,23 @@ public class LinkedQueue<T> implements QueueADT<T> {
      */
     @Override
     public T dequeue() {
-        /** TODO if queue is empty, throw an exception.
-        * Then remove the data item from the queue
-        * Do not forget to change the size
-        **/
+        if(isEmpty())
+        {
+            return null;
+        }
+        else
+        {
+            T temp = front.getData();
+            front = front.getNext();
 
+            if (front == null)
+            {
+                rear = null;
+            }
 
-
+            size--;
+            return temp;
+        }
     }
     
     /**
@@ -81,10 +93,14 @@ public class LinkedQueue<T> implements QueueADT<T> {
      */
     @Override
     public T frontValue() {
-        /**TODO return element in the frontmost position of the array **/
-
-
-
+        if (isEmpty())
+        {
+            return null;
+        }
+        else
+        {
+            return front.getData();
+        }
     }
     
     /**
@@ -102,8 +118,8 @@ public class LinkedQueue<T> implements QueueADT<T> {
      */
     @Override
     public void clear() {
-        while (!this.isEmpty()) {
-            this.dequeue();
-        }
+        front = null;
+        rear = null;
+        size = 0;
     }
 }

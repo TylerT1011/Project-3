@@ -36,9 +36,7 @@ public class LinkedStackTest {
      */
     @Test
     public void testTopValue1() throws Exception {
-        //TODO peek on the top of an empty stack
-
-        
+        assertNull(stack.topValue());
     }
 
     /**
@@ -46,9 +44,8 @@ public class LinkedStackTest {
      */
     @Test
     public void testTopValue2() {
-        //TODO peek on the top of an non-empty stack
-
-        
+        stack.push(1);
+        assertEquals(1, (int)stack.topValue());
     }
     
     /**
@@ -56,19 +53,17 @@ public class LinkedStackTest {
      */
     @Test
     public void testPop1() {
-        //TODO test your pop method of LinkedQueue<Integer> 
-        //when the stack is empty
-
+        assertNull(stack.pop());
     }
+
     /**
      * Test of pop method, of class LinkedStack.
      */
     @Test
     public void testPop2() {
-        //TODO test your pop method of LinkedQueue<Integer>
-        //when the stack is not empty
-        
-        
+        stack.push(1);
+        int popped = stack.pop();
+        assertEquals(1, popped);
     }
     
     /**

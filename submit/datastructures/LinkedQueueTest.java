@@ -29,10 +29,13 @@ public class LinkedQueueTest {
      */
     @Test
     public void testEnqueue() {
-        //TODO test your enqueue method of LinkedQueue<Integer>
+        assertTrue(queue.isEmpty());
 
-        
+        queue.enqueue(2);
+        queue.enqueue(1);
 
+        assertTrue(queue.frontValue() != 1);
+        assertEquals(queue.size(), 2);
     }
 
     /**
@@ -51,19 +54,25 @@ public class LinkedQueueTest {
      */
     @Test
     public void testDequeue1() {
-        //TODO test your dequeue method of LinkedQueue<Integer>
-
-        
+        assertNull(queue.dequeue());
+        assertTrue(queue.isEmpty());
+        assertTrue(queue.size() == 0);
     }
     /**
      * Test of dequeue method, of class LinkedQueue.
-     * Test the dequeue() when the queue is empty.
+     * Test the dequeue() when the queue is not empty.
      */
     @Test
     public void testDequeue2() {
-        //TODO test your dequeue method of LinkedQueue<Integer>
+        queue.enqueue(2345678);
+        queue.enqueue(12);
+        queue.enqueue(47);
+        int originalSize = queue.size();
+        Integer originalFront = queue.frontValue();
 
-        
+        queue.dequeue();
+        assertNotEquals(originalFront, queue.frontValue());
+        assertNotEquals(originalSize, queue.size());
         
     }
 
